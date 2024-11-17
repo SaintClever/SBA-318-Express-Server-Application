@@ -1,0 +1,11 @@
+#container {
+  display: flex;
+}
+
+#form {
+  width: 50%;
+}
+
+#list {
+  width: 50%;
+}
