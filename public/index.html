@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo</title>
+  <link rel="stylesheet" href="./styles/style.css">
 </head>
 
 <body>
@@ -12,12 +13,23 @@
   <div id="container">
     <div id="form">
       <form action="/" method="POST">
-        <input type="text" id="todo" value="test">
+        <input type="text" id="todo">
         <button id="btn">Enter</button>
       </form>
     </div>
 
-    <div id="list">Here</div>
+    <div id="list">
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Todo</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
