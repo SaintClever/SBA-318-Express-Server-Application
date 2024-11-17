@@ -14,19 +14,26 @@ let create = async () => {
     "todo": todo.value
   }
 
+  // Update frontend UI
+  tbody.innerHTML += `
+    <tr>
+      <td>${data.time}</td>
+      <td contenteditable="true">${data.todo}</td>
+    </tr>`;
+
   await axios.post("/", data);
 }
 
 
 // Read todo
-let read = async () => {
+(async () => {
   let response = await axios.get("/api");
   let data = response.data;
 
   let tableData = [];
 
-  data.forEach((item) => {
-    console.log(item.time, item.todo);
+  data.todos.forEach((item) => {
+    // console.log(item.time, item.todo);
     tableData.push(`
       <tr>
         <td>${item.time}</td>
@@ -34,15 +41,19 @@ let read = async () => {
       </tr>`);
   });
 
-  console.log(tableData);
+  // console.log(tableData);
 
-  tbody.innerHTML = tableData.toString().replaceAll(",", "");;
-}
+  tbody.innerHTML = tableData.toString().replaceAll(",", "");
+})();
 
 
 // Event Listners
 btn.addEventListener("click", (e) => {
   e.preventDefault();
   create();
-  read();
 });
+
+// tbody.addEventListener("focusout", (e) => {
+//   e.preventDefault();
+//   create();
+// });
