@@ -19,10 +19,17 @@ app.post("/", (req, res) => {
 app.post("/api", (req, res) => {
   console.log(req.body, "post/api");
 
+  
   // Read file
   fs.readFile('./data/users.json', (err, data) => {
     let jsonToObject = JSON.parse(data);
-    jsonToObject.push(req.body);
+
+    let userData = {
+      "id": jsonToObject.length,
+      "firstName": req.body.firstName
+    }
+
+    jsonToObject.push(userData);
 
     let objectToJson = JSON.stringify(jsonToObject);
     console.log(objectToJson, 'stringyyyy');
@@ -44,8 +51,7 @@ app.get("/api", (req, res) => {
     req.body = jsonToObject;
     console.log(req.body, 'get/api');
     res.json(req.body);
-  })
-
+  });
 });
 
 // Server

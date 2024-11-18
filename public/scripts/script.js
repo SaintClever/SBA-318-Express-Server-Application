@@ -1,14 +1,11 @@
 let firstName = document.querySelector("#firstName");
-let btn = document.querySelector("#btn");
-let tbody = document.querySelector("#tbody");
+let submit = document.querySelector("#submit");
 
 
-btn.addEventListener("click", (e) => {
+submit.addEventListener("click", (e) => {
   e.preventDefault();
-  console.log(firstName.value);
-  axios.post('/api', 
-    {"firstName": firstName.value}
-  );
-  console.log('BTN script');
+  
+  let data = {"firstName": firstName.value};
+  axios.post('/api', data);
   location.reload();
 });
