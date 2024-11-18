@@ -1,15 +1,9 @@
 import fs from 'fs';
-import express from 'express';
-import todos from "./data/todos.json" assert {"type": "json"};
-// const todos = "./data/todos.json";
+import express, { json } from 'express';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Backend DB
-let db = {
-  "todos": []
-};
 
 // Middleware
 app.use(express.static('public'));
@@ -17,19 +11,41 @@ app.use(express.json());
 
 // Routes
 app.post("/", (req, res) => {
-  for (let i in req.body) {
-    db.todos.push(req.body[i]);
-  }
-
-  fs.writeFile("./data/todos.json", JSON.stringify(db), err => {
-    if (err) throw err;
-    console.log("Done");
-  });
-  res.end();
+  console.log(req.body, "post/");
+  res.redirect("/");
 });
 
+
+app.post("/api", (req, res) => {
+  console.log(req.body, "post/api");
+
+  // Read file
+  fs.readFile('./data/users.json', (err, data) => {
+    let jsonToObject = JSON.parse(data);
+    jsonToObject.push(req.body);
+
+    let objectToJson = JSON.stringify(jsonToObject);
+    console.log(objectToJson, 'stringyyyy');
+  
+    // Update File
+    fs.writeFile("./data/users.json", objectToJson, (err) => {
+      res.json(req.body);
+    });
+  });
+
+});
+
+
 app.get("/api", (req, res) => {
-  res.json(todos);
+  console.log(req.body, "get/api");
+
+  fs.readFile('./data/users.json', (err, data) => {
+    let jsonToObject = JSON.parse(data);
+    req.body = jsonToObject;
+    console.log(req.body, 'get/api');
+    res.json(req.body);
+  })
+
 });
 
 // Server
