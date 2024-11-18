@@ -1,6 +1,7 @@
 import fs from 'fs';
 import express from 'express';
-const todos = "./data/todos.json";
+import todos from "./data/todos.json" assert {"type": "json"};
+// const todos = "./data/todos.json";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,9 +17,11 @@ app.use(express.json());
 
 // Routes
 app.post("/", (req, res) => {
-  db.todos.push(req.body);
+  for (let i in req.body) {
+    db.todos.push(req.body[i]);
+  }
 
-  fs.writeFile(todos, JSON.stringify(db), err => {
+  fs.writeFile("./data/todos.json", JSON.stringify(db), err => {
     if (err) throw err;
     console.log("Done");
   });
@@ -26,7 +29,7 @@ app.post("/", (req, res) => {
 });
 
 app.get("/api", (req, res) => {
-  res.json(db);
+  res.json(todos);
 });
 
 // Server

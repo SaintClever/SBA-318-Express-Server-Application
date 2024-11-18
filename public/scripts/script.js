@@ -2,6 +2,7 @@ let todo = document.querySelector("#todo");
 let btn = document.querySelector("#btn");
 let tbody = document.querySelector("#tbody");
 
+
 // Create todo
 let create = async () => {
   // Time
@@ -9,19 +10,37 @@ let create = async () => {
   let timeLocalString = time.toLocaleString();
 
   // Data to send
-  let data = {
-    "time": timeLocalString,
-    "todo": todo.value
-  }
+  let db = {
+    "todos": [
+      {
+        "time": timeLocalString,
+        "todo": todo.value
+      }
+    ]
+  };
 
   // Update frontend UI
-  tbody.innerHTML += `
+  for (let i in db.todos) {
+    tbody.innerHTML += `
     <tr>
-      <td>${data.time}</td>
-      <td contenteditable="true">${data.todo}</td>
+      <td>${db.todos[i].time}</td>
+      <td contenteditable="true">${db.todos[i].todo}</td>
     </tr>`;
+  };
 
-  await axios.post("/", data);
+
+  let tr = tbody.querySelectorAll("tr");
+  for (let i in tr) {
+    if (tr[i].innerText !== undefined) {
+      let dic = {
+        "time": tr[i].innerText.split("\t")[0],
+        "todo": tr[i].innerText.split("\t")[1]
+      }
+      db.todos.push(dic);
+    }
+  }
+  
+  await axios.post("/", db.todos);
 }
 
 
@@ -40,8 +59,6 @@ let create = async () => {
         <td contenteditable="true">${item.todo}</td>
       </tr>`);
   });
-
-  // console.log(tableData);
 
   tbody.innerHTML = tableData.toString().replaceAll(",", "");
 })();
