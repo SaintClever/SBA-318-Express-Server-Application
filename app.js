@@ -16,22 +16,14 @@ app.post("/", (req, res) => {
 });
 
 
+// NOTE: DONE
 app.post("/api", (req, res) => {
-  console.log(req.body, "post/api");
-
+  // console.log(req.body, "post/api");
   // Read file
   fs.readFile('./data/users.json', (err, data) => {
     let jsonToObject = JSON.parse(data);
-
-    let userData = {
-      "id": jsonToObject.length,
-      "firstName": req.body.firstName,
-      "lastName": req.body.lastName,
-      "email": req.body.email,
-      "createTime": req.body.createTime
-    }
-
-    jsonToObject.push(userData);
+    let reqBody = {"id": jsonToObject.length, ...req.body};
+    jsonToObject.push(reqBody);
 
     let objectToJson = JSON.stringify(jsonToObject);
     console.log(objectToJson, 'stringy');
@@ -51,7 +43,7 @@ app.get("/api", (req, res) => {
   fs.readFile('./data/users.json', (err, data) => {
     let jsonToObject = JSON.parse(data);
     req.body = jsonToObject;
-    console.log(req.body, 'get/api');
+    // console.log(req.body, 'get/api');
     res.json(req.body);
   });
 });
@@ -66,7 +58,12 @@ app.put("/api", (req, res) => {
     let jsonToObject = JSON.parse(data);
     
     // remove unwanted user
-    jsonToObject.splice(userId, 1);
+
+    for (let i in jsonToObject) {
+      console.log(jsonToObject[i].id, 'Loop');
+    }
+
+    // jsonToObject.splice(userId, 1);
     console.log(jsonToObject, 'delete/api', userId);
 
     let objectToJson = JSON.stringify(jsonToObject);

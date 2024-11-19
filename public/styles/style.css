@@ -3,6 +3,16 @@ body {
   margin: 0;
 }
 
+#dialog {
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: none;
+  margin: 50px auto;
+  text-align: center;
+  width: 500px;
+}
+
 #container {
   display: flex;
   margin: 10px;
@@ -28,8 +38,9 @@ iframe {
 input[type=text], input[type=email], textarea {
   border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 15px 5px;
-  width: 75%;
+  padding: 10px 5px;
+  width: 40%;
+  margin-bottom: 10px;
 }
 
 button {
@@ -38,7 +49,8 @@ button {
   background-color: lightslategray;
   color: white;
   padding: 10px 5px;
-  width: 35%;
+  width: 75px;
+  margin-bottom: 10px;
 }
 
 button:active, button:hover {

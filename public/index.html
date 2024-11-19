@@ -9,25 +9,43 @@
 </head>
 
 <body>
+
+  <dialog open id="dialog">
+    <form action="/api" method="PUT">
+      <h3>Paste updated information WITH id</h3>
+      <textarea name="textarea" id="textarea" style="height: 250px; width: 475px;" placeholder="{&#10; &quot;id&quot;: 0,
+ &quot;firstName&quot;: &quot;Nesta&quot;,
+ &quot;lastName&quot;: &quot;Parchment&quot;,
+ &quot;email&quot;: &quot;np@aol.com&quot;,
+ &quot;createTime&quot;: &quot;11/15/2024, 10:00:00 PM&quot;&#10;},
+{&#10; &quot;id&quot;: 1,
+ &quot;firstName&quot;: &quot;Saint. &quot;,
+ &quot;lastName&quot;: &quot;Clever&quot;,
+ &quot;email&quot;: &quot;sc@aol.com&quot;,
+ &quot;createTime&quot;: &quot;11/20/2024, 12:00:00 AM&quot; &#10;}"></textarea><br>
+      <button id="dialogSubmit">Submit</button> <button id="cancel">Cancel</button>
+    </form>
+  </dialog>
+
   <nav>
     <a style="color: white;" href="/api" target="_blank">View { API }</a>
   </nav>
 
   <div id="container">
     <div id="form">
-      <a href="/api" target="_blank">API</a> | <a
-        href="https://github.com/SaintClever/SBA-318-Express-Server-Application" target="_blank">GitHub.com</a><br><br>
-      <form action="/api" method="POST">
-        <input type="text" name="firstName" id="firstName" placeholder="Jane"><br><br>
-        <input type="text" name="lastName" id="lastName" placeholder="Doe"><br><br>
-        <input type="email" name="email" id="email" placeholder="email"><br><br>
-        <button id="submit">Create</button>
-      </form>
-      <br><br>
-
-      <form action="/api" method="PUT">
-        <input type="text" name="userId" id="userId" placeholder="ID"><br><br>
+      <a href="/api" target="_blank">API</a> |
+      <a href="https://github.com/SaintClever/SBA-318-Express-Server-Application" target="_blank">GitHub.com</a><br><br>
+      <form action="/api" method="POST" style="margin-bottom: 25px;">
+        <button id="append">Append</button>
+        <button id="create">Create</button>
+        <!-- <button id="read">Read</button> -->
+        <button id="update">Update</button>
         <button id="delete">Delete</button>
+
+        <div id="pairs">
+          <input type="text" name="key1" id="key1" placeholder="key1">
+          <input type="text" name="value1" id="value1" placeholder="value1">
+        </div>
       </form>
     </div>
 
@@ -37,7 +55,7 @@
   </div>
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="./prism/okaidia.js" defer></script>
+  <!-- <script src="./prism/okaidia.js" defer></script> -->
   <script type="module" src="./scripts/script.js"></script>
 </body>
 
