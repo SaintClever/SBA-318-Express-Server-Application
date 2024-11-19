@@ -1,8 +1,9 @@
-# [api.com](api.com)
+# [api.com](https://github.com/SaintClever/SBA-318-Express-Server-Application)
 
-***API - Generator***
+***API and JSON - Viewer***
 
-- API Generator
+- Create a dummy API or JSON data and view it before using
 
-![api](/assets/api.gif "api")
-<!-- ![api](/assets/api.gif "api") -->
+
+![api](./public/assets/api.gif "api")
+<!-- ![api](./public/assets/api.gif "api") -->

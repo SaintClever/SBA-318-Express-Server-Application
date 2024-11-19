@@ -10,6 +10,7 @@ let update = document.querySelector("#update");
 
 // Update Dialog Buttons 
 let dialogSubmit = document.querySelector("#dialogSubmit");
+let dialogCancel = document.querySelector("#dialogCancel");
 let deleteBtn = document.querySelector("#delete");
 
 // NOTE: fixing
@@ -64,6 +65,12 @@ let updateData = async () => {
     dialog.style.display = "none";
   });
 
+  dialogCancel.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("Canceled");
+    dialog.style.display = "none";
+  });
+  
   // await axios.put('/api', {"userId": userId.value});
   // location.reload();
 };
