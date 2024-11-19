@@ -9,16 +9,24 @@
 </head>
 
 <body>
+  <nav>
+    <a style="color: white;" href="/api" target="_blank">View { API }</a>
+  </nav>
+
   <div id="container">
     <div id="form">
+      <a href="/api" target="_blank">API</a> | <a
+        href="https://github.com/SaintClever/SBA-318-Express-Server-Application" target="_blank">GitHub.com</a><br><br>
       <form action="/api" method="POST">
-        <input type="text" name="firstName" id="firstName" placeholder="firstname"><br><br>
-        <button id="submit">Submit</button>
+        <input type="text" name="firstName" id="firstName" placeholder="Jane"><br><br>
+        <input type="text" name="lastName" id="lastName" placeholder="Doe"><br><br>
+        <input type="email" name="email" id="email" placeholder="email"><br><br>
+        <button id="submit">Create</button>
       </form>
       <br><br>
 
-      <form action="/api" method="DELETE">
-        <input type="text" name="id" id="id" placeholder="id"><br><br>
+      <form action="/api" method="PUT">
+        <input type="text" name="userId" id="userId" placeholder="ID"><br><br>
         <button id="delete">Delete</button>
       </form>
     </div>

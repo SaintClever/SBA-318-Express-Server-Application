@@ -1,10 +1,11 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  margin: 10px;
+  margin: 0;
 }
 
 #container {
   display: flex;
+  margin: 10px;
 }
 
 #form {
@@ -24,7 +25,7 @@ iframe {
   width: 100%;
 }
 
-input[type=text], textarea {
+input[type=text], input[type=email], textarea {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 15px 5px;
@@ -36,10 +37,24 @@ button {
   border-radius: 5px;
   background-color: lightslategray;
   color: white;
-  padding: 10px 0px;
-  width: 75%;
+  padding: 10px 5px;
+  width: 35%;
 }
 
-button:active {
+button:active, button:hover {
   background-color: lightcoral;
+}
+
+nav {
+  background-color: black;
+  padding: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: lightslategray;
+}
+
+a:active, a:hover {
+  color: lightcoral;
 }
