@@ -1,9 +1,9 @@
 import fs from 'fs';
-import express, { json } from 'express';
+import express from 'express';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+const jsonFilePath = "./data/db.json";
 
 // Middleware
 app.use(express.static('public'));
@@ -20,7 +20,7 @@ app.post("/", (req, res) => {
 app.post("/api", (req, res) => {
   // console.log(req.body, "post/api");
   // Read file
-  fs.readFile('./data/users.json', (err, data) => {
+  fs.readFile(jsonFilePath, (err, data) => {
     let jsonToObject = JSON.parse(data);
     let reqBody = {"id": jsonToObject.length, ...req.body};
     jsonToObject.push(reqBody);
@@ -29,7 +29,7 @@ app.post("/api", (req, res) => {
     console.log(objectToJson, 'stringy');
   
     // Update File
-    fs.writeFile("./data/users.json", objectToJson, (err) => {
+    fs.writeFile(jsonFilePath, objectToJson, (err) => {
       res.json(req.body);
     });
   });
@@ -40,7 +40,7 @@ app.post("/api", (req, res) => {
 app.get("/api", (req, res) => {
   // console.log(req.body, "get/api");
 
-  fs.readFile('./data/users.json', (err, data) => {
+  fs.readFile(jsonFilePath, (err, data) => {
     let jsonToObject = JSON.parse(data);
     req.body = jsonToObject;
     // console.log(req.body, 'get/api');
@@ -49,12 +49,13 @@ app.get("/api", (req, res) => {
 });
 
 
+// NOTE: DONE
 app.put("/api", (req, res) => {
   // console.log(req.body,'put/api');
   let time = new Date();
   let id = req.body.id;
   
-  fs.readFile("./data/users.json", (err, data) => {
+  fs.readFile(jsonFilePath, (err, data) => {
     let jsonToObject = JSON.parse(data);
     
     // Update object
@@ -66,7 +67,7 @@ app.put("/api", (req, res) => {
     
     let objectToJson = JSON.stringify(jsonToObject);
 
-    fs.writeFile("./data/users.json", objectToJson, (err) => {
+    fs.writeFile(jsonFilePath, objectToJson, (err) => {
       res.json(objectToJson);
     });
   });

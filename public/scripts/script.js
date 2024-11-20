@@ -6,13 +6,12 @@ let pairs = document.querySelector("#pairs");
 let create = document.querySelector("#create");
 let read = document.querySelector("#read");
 let update = document.querySelector("#update");
-// let delete_ = document.querySelector("#delete");
+let deleteBtn = document.querySelector("#delete");
 
 // Update Dialog Buttons 
 let dialogSubmit = document.querySelector("#dialogSubmit");
 let dialogCancel = document.querySelector("#dialogCancel");
 let textarea = document.querySelector("#textarea");
-let deleteBtn = document.querySelector("#delete");
 
 // NOTE: fixing
 let userId = document.querySelector("#userId");
@@ -90,3 +89,9 @@ update.addEventListener("click", (e) => {
   e.preventDefault();
   updateData();
 });
+
+
+deleteBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  console.log("DELETING");
+})
