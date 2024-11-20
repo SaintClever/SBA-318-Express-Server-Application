@@ -85,10 +85,9 @@ let deleteData = async () => {
 
   dialogDeleteBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log(id);
-
-    console.log("DELETING");
+    axios.delete(`/api/${id.value}`);
     dialogDelete.style.display = "none";
+    location.reload();
   });
 
   dialogDeleteCancel.addEventListener("click", (e) => {

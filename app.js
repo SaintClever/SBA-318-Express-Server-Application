@@ -74,6 +74,22 @@ app.put("/api", (req, res) => {
 });
 
 
+app.delete("/api/:id", (req, res) => {
+  let id = parseInt(req.params.id);
+
+  fs.readFile(jsonFilePath, (err, data) => {
+    let jsonToObject = JSON.parse(data);
+    let filterId = jsonToObject.filter(obj => obj.id !== id);
+
+    let objectToJson = JSON.stringify(filterId);
+
+    fs.writeFile(jsonFilePath, objectToJson, (err) => {
+      res.json(objectToJson);
+    });
+  });
+});
+
+
 // Server
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
