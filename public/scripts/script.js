@@ -18,6 +18,7 @@ let dialogDeleteBtn = document.querySelector("#dialogDeleteBtn");
 let dialogDeleteCancel = document.querySelector("#dialogDeleteCancel");
 
 let textarea = document.querySelector("#textarea");
+let id = document.querySelector("#id");
 
 // Create Pair
 // For ID
@@ -84,6 +85,8 @@ let deleteData = async () => {
 
   dialogDeleteBtn.addEventListener("click", (e) => {
     e.preventDefault();
+    console.log(id);
+
     console.log("DELETING");
     dialogDelete.style.display = "none";
   });

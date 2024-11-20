@@ -24,12 +24,8 @@
 
   <dialog open id="dialogDelete">
     <form action="/api" method="DELETE">
-      <h3>Paste desired object to DELETE WITH id</h3>
-      <textarea name="textarea" id="textarea" style="height: 250px; width: 475px;" placeholder="{ &#10; &quot;id&quot;: 0,
- &quot;firstName&quot;: &quot;Nesta&quot;,
- &quot;lastName&quot;: &quot;Parchment&quot;,
- &quot;email&quot;: &quot;np@aol.com&quot;,
- &quot;createTime&quot;: &quot;11/15/2024, 10:00:00 PM&quot;&#10;}"></textarea><br>
+      <h3>Input id</h3>
+      <input type="number" name="id" id="id" style="height: 30px; width: 145px;" placeholder="0"><br><br>
       <button id="dialogDeleteBtn">Delete</button> <button id="dialogDeleteCancel">Cancel</button>
     </form>
   </dialog>
