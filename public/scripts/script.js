@@ -11,6 +11,7 @@ let update = document.querySelector("#update");
 // Update Dialog Buttons 
 let dialogSubmit = document.querySelector("#dialogSubmit");
 let dialogCancel = document.querySelector("#dialogCancel");
+let textarea = document.querySelector("#textarea");
 let deleteBtn = document.querySelector("#delete");
 
 // NOTE: fixing
@@ -61,8 +62,10 @@ let updateData = async () => {
 
   dialogSubmit.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log("Submited");
+    let obj = JSON.parse(textarea.value);
+    axios.put('/api', obj);
     dialog.style.display = "none";
+    location.reload();
   });
 
   dialogCancel.addEventListener("click", (e) => {
@@ -70,9 +73,6 @@ let updateData = async () => {
     console.log("Canceled");
     dialog.style.display = "none";
   });
-  
-  // await axios.put('/api', {"userId": userId.value});
-  // location.reload();
 };
 
 // AddEventListeners

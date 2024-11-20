@@ -38,7 +38,7 @@ app.post("/api", (req, res) => {
 
 
 app.get("/api", (req, res) => {
-  console.log(req.body, "get/api");
+  // console.log(req.body, "get/api");
 
   fs.readFile('./data/users.json', (err, data) => {
     let jsonToObject = JSON.parse(data);
@@ -50,29 +50,25 @@ app.get("/api", (req, res) => {
 
 
 app.put("/api", (req, res) => {
-  console.log(req.body,'put/api');
-
-  let userId = req.body.userId;
-
+  // console.log(req.body,'put/api');
+  let time = new Date();
+  let id = req.body.id;
+  
   fs.readFile("./data/users.json", (err, data) => {
     let jsonToObject = JSON.parse(data);
     
-    // remove unwanted user
-
+    // Update object
     for (let i in jsonToObject) {
-      console.log(jsonToObject[i].id, 'Loop');
+      if (jsonToObject[i].id === id) {
+        jsonToObject[i] = {...req.body, "createTime": time.toLocaleString()};
+      }
     }
-
-    // jsonToObject.splice(userId, 1);
-    console.log(jsonToObject, 'delete/api', userId);
-
+    
     let objectToJson = JSON.stringify(jsonToObject);
-    console.log(objectToJson, 'stringyyyy delete/api');
 
     fs.writeFile("./data/users.json", objectToJson, (err) => {
       res.json(objectToJson);
     });
-
   });
 });
 
