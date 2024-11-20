@@ -106,6 +106,11 @@ create.addEventListener("click", (e) => {
   createPair();
 });
 
+read.addEventListener("click", (e) => {
+  e.preventDefault();
+  window.open("/api", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
+});
+
 update.addEventListener("click", (e) => {
   e.preventDefault();
   updateData();
