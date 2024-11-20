@@ -61,8 +61,6 @@ let createPair = async () => {
   data["createTime"] = time.toLocaleString();
   await axios.post('/api', data);
   location.reload();
-  // iframe.src = iframe.src; // GOOD
-  // iframe.contentWindow.location.reload(); // GOOD
 };
 
 // Update
@@ -75,8 +73,6 @@ let updateData = async () => {
     axios.put('/api', obj);
     dialogUpdate.style.display = "none";
     location.reload();
-    // iframe.src = iframe.src; // NO
-    // iframe.contentWindow.location.reload(); // NO
   });
 
   dialogUpdateCancel.addEventListener("click", (e) => {
@@ -95,8 +91,6 @@ let deleteData = async () => {
     axios.delete(`/api/${id.value}`);
     dialogDelete.style.display = "none";
     location.reload();
-    // iframe.src = iframe.src; // NO
-    // iframe.contentWindow.location.reload(); // NO
   });
 
   dialogDeleteCancel.addEventListener("click", (e) => {
