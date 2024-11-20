@@ -3,7 +3,9 @@ let appendBtn = document.querySelector("#append");
 let pairs = document.querySelector("#pairs");
 
 // iframe
-let iframe = document.querySelector("iframe");
+setTimeout(() => {
+  let pre = window.frames[0].document.body.querySelector("pre");
+}, 1000);
 
 // CRUD Buttons
 let create = document.querySelector("#create");
@@ -47,31 +49,49 @@ let appendPairs = () => {
 
 // Create
 let createPair = async () => {
-  let time = new Date();
-  let inputFields = pairs.querySelectorAll("input");
-  let data = {};
-
-  // Add user input data
-  for (let i = 0; i < inputFields.length; i++) {
-    if (i % 2 == 0) {
-      data[inputFields[i].value] = inputFields[i + 1].value;
+  try {
+    let time = new Date();
+    let inputFields = pairs.querySelectorAll("input");
+    let data = {};
+  
+    // Add user input data
+    for (let i = 0; i < inputFields.length; i++) {
+      if (i % 2 == 0) {
+        data[inputFields[i].value] = inputFields[i + 1].value;
+      }
+    };
+    // Add time
+    data["createTime"] = time.toLocaleString();
+    let response = await axios.post('/api', data);
+    
+    if (response.status !== 201) {
+      throw new Error("POST not created");
     }
-  };
-  // Add time
-  data["createTime"] = time.toLocaleString();
-  await axios.post('/api', data);
+  } catch(error) {
+    console.log(error);
+  }
+
   location.reload();
 };
 
 // Update
-let updateData = async () => {
+let updateData = () => {
   dialogUpdate.style.display = "inherit";
 
-  dialogUpdateBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    let obj = JSON.parse(textarea.value);
-    axios.put('/api', obj);
-    dialogUpdate.style.display = "none";
+  dialogUpdateBtn.addEventListener("click", async (e) => {
+    try {
+      e.preventDefault();
+      let obj = JSON.parse(textarea.value);
+      let response = await axios.put('/api', obj);
+  
+      if (response.status !== 200) {
+        throw new Error("PUT not created");
+      }
+  
+      dialogUpdate.style.display = "none";
+    } catch(error) {
+      console.log(error);
+    }
     location.reload();
   });
 
@@ -87,9 +107,19 @@ let deleteData = async () => {
   dialogDelete.style.display = "inherit";
 
   dialogDeleteBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    axios.delete(`/api/${id.value}`);
-    dialogDelete.style.display = "none";
+    try {
+      e.preventDefault();
+      let response = axios.delete(`/api/${id.value}`);
+  
+      if (response.status !== 200 || response.status !== 204) {
+        throw new Error("DELETION failed");
+      }
+  
+      dialogDelete.style.display = "none";
+    } catch(error) {
+      console.log(error);
+    }
+
     location.reload();
   });
 
