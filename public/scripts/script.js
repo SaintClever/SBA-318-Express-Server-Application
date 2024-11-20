@@ -2,7 +2,10 @@
 let appendBtn = document.querySelector("#append");
 let pairs = document.querySelector("#pairs");
 
-// Crud Buttons
+// iframe
+let iframe = document.querySelector("iframe");
+
+// CRUD Buttons
 let create = document.querySelector("#create");
 let read = document.querySelector("#read");
 let update = document.querySelector("#update");
@@ -57,7 +60,7 @@ let createPair = async () => {
   // Add time
   data["createTime"] = time.toLocaleString();
   await axios.post('/api', data);
-  location.reload();
+  iframe.contentWindow.location.reload();
 };
 
 // Update
@@ -69,7 +72,7 @@ let updateData = async () => {
     let obj = JSON.parse(textarea.value);
     axios.put('/api', obj);
     dialogUpdate.style.display = "none";
-    location.reload();
+    iframe.contentWindow.location.reload();
   });
 
   dialogUpdateCancel.addEventListener("click", (e) => {
@@ -87,7 +90,7 @@ let deleteData = async () => {
     e.preventDefault();
     axios.delete(`/api/${id.value}`);
     dialogDelete.style.display = "none";
-    location.reload();
+    iframe.contentWindow.location.reload();
   });
 
   dialogDeleteCancel.addEventListener("click", (e) => {
