@@ -10,7 +10,7 @@
 
 <body>
 
-  <dialog open id="dialog">
+  <dialog open id="dialogUpdate">
     <form action="/api" method="PUT">
       <h3>Paste updated object WITH id</h3>
       <textarea name="textarea" id="textarea" style="height: 250px; width: 475px;" placeholder="{ &#10; &quot;id&quot;: 0,
@@ -18,21 +18,21 @@
  &quot;lastName&quot;: &quot;Parchment&quot;,
  &quot;email&quot;: &quot;np@aol.com&quot;,
  &quot;createTime&quot;: &quot;11/15/2024, 10:00:00 PM&quot;&#10;}"></textarea><br>
-      <button id="dialogSubmit">Submit</button> <button id="dialogCancel">Cancel</button>
+      <button id="dialogUpdateBtn">Update</button> <button id="dialogUpdateCancel">Cancel</button>
     </form>
   </dialog>
 
-  <!-- <dialog open id="dialog">
+  <dialog open id="dialogDelete">
     <form action="/api" method="DELETE">
-      <h3>Paste updated object WITH id</h3>
+      <h3>Paste desired object to DELETE WITH id</h3>
       <textarea name="textarea" id="textarea" style="height: 250px; width: 475px;" placeholder="{ &#10; &quot;id&quot;: 0,
  &quot;firstName&quot;: &quot;Nesta&quot;,
  &quot;lastName&quot;: &quot;Parchment&quot;,
  &quot;email&quot;: &quot;np@aol.com&quot;,
  &quot;createTime&quot;: &quot;11/15/2024, 10:00:00 PM&quot;&#10;}"></textarea><br>
-      <button id="dialogDelete">Delete</button> <button id="dialogCancel">Cancel</button>
+      <button id="dialogDeleteBtn">Delete</button> <button id="dialogDeleteCancel">Cancel</button>
     </form>
-  </dialog> -->
+  </dialog>
 
   <nav>
     <a style="color: white;" href="/api" target="_blank">View { API }</a>

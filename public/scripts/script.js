@@ -8,14 +8,18 @@ let read = document.querySelector("#read");
 let update = document.querySelector("#update");
 let deleteBtn = document.querySelector("#delete");
 
-// Update Dialog Buttons 
-let dialogSubmit = document.querySelector("#dialogSubmit");
-let dialogCancel = document.querySelector("#dialogCancel");
+// Dialogs
+let dialogUpdate = document.querySelector("#dialogUpdate");
+let dialogUpdateBtn = document.querySelector("#dialogUpdateBtn");
+let dialogUpdateCancel = document.querySelector("#dialogUpdateCancel");
+
+let dialogDelete = document.querySelector("#dialogDelete");
+let dialogDeleteBtn = document.querySelector("#dialogDeleteBtn");
+let dialogDeleteCancel = document.querySelector("#dialogDeleteCancel");
+
 let textarea = document.querySelector("#textarea");
 
-// NOTE: fixing
-let userId = document.querySelector("#userId");
-
+// Create Pair
 // For ID
 let count = 2;
 
@@ -37,7 +41,7 @@ let appendPairs = () => {
   count++;
 };
 
-
+// Create
 let createPair = async () => {
   let time = new Date();
   let inputFields = pairs.querySelectorAll("input");
@@ -55,22 +59,39 @@ let createPair = async () => {
   location.reload();
 };
 
-
+// Update
 let updateData = async () => {
-  dialog.style.display = "inherit";
+  dialogUpdate.style.display = "inherit";
 
-  dialogSubmit.addEventListener("click", (e) => {
+  dialogUpdateBtn.addEventListener("click", (e) => {
     e.preventDefault();
     let obj = JSON.parse(textarea.value);
     axios.put('/api', obj);
-    dialog.style.display = "none";
+    dialogUpdate.style.display = "none";
     location.reload();
   });
 
-  dialogCancel.addEventListener("click", (e) => {
+  dialogUpdateCancel.addEventListener("click", (e) => {
     e.preventDefault();
     console.log("Canceled");
-    dialog.style.display = "none";
+    dialogUpdate.style.display = "none";
+  });
+};
+
+// Delete
+let deleteData = async () => {
+  dialogDelete.style.display = "inherit";
+
+  dialogDeleteBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("DELETING");
+    dialogDelete.style.display = "none";
+  });
+
+  dialogDeleteCancel.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("Canceled");
+    dialogDelete.style.display = "none";
   });
 };
 
@@ -90,8 +111,7 @@ update.addEventListener("click", (e) => {
   updateData();
 });
 
-
 deleteBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  console.log("DELETING");
-})
+  deleteData();
+});
