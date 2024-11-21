@@ -70,12 +70,11 @@ let createPair = async () => {
   } catch(error) {
     console.log(error);
   }
-
-  location.reload();
+  document.querySelector("iframe").contentWindow.location.reload();
 };
 
 // Update
-let updateData = () => {
+let updateData = async () => {
   dialogUpdate.style.display = "inherit";
 
   dialogUpdateBtn.addEventListener("click", async (e) => {
@@ -92,7 +91,7 @@ let updateData = () => {
     } catch(error) {
       console.log(error);
     }
-    location.reload();
+    document.querySelector("iframe").contentWindow.location.reload();
   });
 
   dialogUpdateCancel.addEventListener("click", (e) => {
@@ -106,21 +105,15 @@ let updateData = () => {
 let deleteData = async () => {
   dialogDelete.style.display = "inherit";
 
-  dialogDeleteBtn.addEventListener("click", (e) => {
+  dialogDeleteBtn.addEventListener("click", async (e) => {
     try {
       e.preventDefault();
-      let response = axios.delete(`/api/${id.value}`);
-  
-      if (response.status !== 200 || response.status !== 204) {
-        throw new Error("DELETION failed");
-      }
-  
+      await axios.delete(`/api/${id.value}`);
       dialogDelete.style.display = "none";
     } catch(error) {
       console.log(error);
     }
-
-    location.reload();
+    document.querySelector("iframe").contentWindow.location.reload();
   });
 
   dialogDeleteCancel.addEventListener("click", (e) => {
