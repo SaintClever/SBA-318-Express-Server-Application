@@ -32,8 +32,7 @@ app.post("/api", (req, res) => {
     jsonToObject.push(reqBody);
 
     let objectToJson = JSON.stringify(jsonToObject);
-    console.log(objectToJson, 'stringy');
-  
+    // console.log(objectToJson, 'string');
     // Update File
     fs.writeFile(jsonFilePath, objectToJson, (err) => {
       res.json(req.body);
@@ -45,7 +44,6 @@ app.post("/api", (req, res) => {
 
 app.get("/api", (req, res) => {
   // console.log(req.body, "get/api");
-
   fs.readFile(jsonFilePath, (err, data) => {
     let jsonToObject = JSON.parse(data);
     req.body = jsonToObject;
@@ -72,7 +70,6 @@ app.put("/api", (req, res) => {
     }
     
     let objectToJson = JSON.stringify(jsonToObject);
-
     fs.writeFile(jsonFilePath, objectToJson, (err) => {
       res.json(objectToJson);
     });
@@ -86,7 +83,6 @@ app.delete("/api/:id", (req, res) => {
   fs.readFile(jsonFilePath, (err, data) => {
     let jsonToObject = JSON.parse(data);
     let filterId = jsonToObject.filter(obj => obj.id !== id);
-
     let objectToJson = JSON.stringify(filterId);
 
     fs.writeFile(jsonFilePath, objectToJson, (err) => {

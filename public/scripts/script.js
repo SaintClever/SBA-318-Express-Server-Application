@@ -62,11 +62,7 @@ let createPair = async () => {
     };
     // Add time
     data["createTime"] = time.toLocaleString();
-    let response = await axios.post('/api', data);
-    
-    if (response.status !== 201) {
-      throw new Error("POST not created");
-    }
+    await axios.post('/api', data);
   } catch(error) {
     console.log(error);
   }
@@ -81,12 +77,7 @@ let updateData = async () => {
     try {
       e.preventDefault();
       let obj = JSON.parse(textarea.value);
-      let response = await axios.put('/api', obj);
-  
-      if (response.status !== 200) {
-        throw new Error("PUT not created");
-      }
-  
+      await axios.put('/api', obj);
       dialogUpdate.style.display = "none";
     } catch(error) {
       console.log(error);
