@@ -2,11 +2,6 @@
 let appendBtn = document.querySelector("#append");
 let pairs = document.querySelector("#pairs");
 
-// iframe
-setTimeout(() => {
-  let pre = window.frames[0].document.body.querySelector("pre");
-}, 1000);
-
 // CRUD Buttons
 let create = document.querySelector("#create");
 let read = document.querySelector("#read");
